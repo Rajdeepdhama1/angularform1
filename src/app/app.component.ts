@@ -13,31 +13,40 @@ export class AppComponent {
     Name: new FormControl('', Validators.required),
     Emailid: new FormControl('', [Validators.required, Validators.email]),
     abc: new FormControl('+91'),
-    contactno: new FormControl('', Validators.required),
+    contactno: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9]+")]),
     empid: new FormControl('', Validators.required),
     address: new FormGroup({
       Line1: new FormControl('', Validators.required),
       Line2: new FormControl('', Validators.required),
       District: new FormControl('', Validators.required),
       state: new FormControl(''),
-      Pincode: new FormControl('', Validators.required),
+      Pincode: new FormControl('', [Validators.required, , Validators.minLength(6), Validators.maxLength(6), Validators.pattern("[0-9]+")]),
     })
   })
   get new() { return this.profileForm.controls; }
+
 
   onSubmit() {
     console.log(this.profileForm.value);
     this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.profileForm.invalid) {
-      return;
-    }
-
     alert('YOU REGISTERED SUCCESSFULLY.')
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
