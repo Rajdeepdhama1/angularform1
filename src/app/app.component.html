@@ -5,17 +5,16 @@
     <input class="box" type="text" formControlName="Name" placeholder="Enter name">
   </label>
   <div *ngIf=" new.Name.errors" class="alert alert-danger">
-      <p class="error" *ngIf="new.Name.errors.required"> required field</p>
-  
-    </div>
-  
+    <p class="error" *ngIf="new.Name.errors.required">/* required field */</p>
+  </div>
+
 
   <label>
     Email-id: </label>
   <input class="box" type="text" formControlName="Emailid" placeholder="Enter email-id">
   <div *ngIf=" new.Emailid.errors" class="alert alert-danger">
-    <p class="error" *ngIf="new.Emailid.errors.required">Email is required</p>
-    <p class="error" *ngIf="new.Emailid.errors.email">Email must be a valid.</p>
+    <p class="error" *ngIf="new.Emailid.errors.required">/* Email is required */</p>
+    <p class="error" *ngIf="new.Emailid.errors.email">/* Email must be a valid. */</p>
   </div>
 
 
@@ -24,12 +23,12 @@
   <label>
     contact no:</label>
   <span><input class="pre" type="text" formControlName="abc">
-    <input class="box"
-      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-      type="number" maxlength="10" formControlName="contactno" placeholder="Enter phone no."></span>
+    <input class="box" type="tel" formControlName="contactno" placeholder="Enter phone no."></span>
   <div *ngIf=" new.contactno.errors" class="alert alert-danger">
-    <p class="error" *ngIf="new.contactno.errors.required">mobile no. is required</p>
-
+    <p class="error" *ngIf="new.contactno.errors.required">/* mobile no. is required */</p>
+    <p class="error" *ngIf="new.contactno.errors.maxlength">/* maxlength must be 10 */</p>
+    <p class="error" *ngIf="new.contactno.errors.minlength">/* minlength must be 10 */</p>
+    <p class="error" *ngIf="new.contactno.errors.pattern">/* input must be a number. */</p>
   </div>
 
 
@@ -38,10 +37,9 @@
     <input class="box" type="text" formControlName="empid" placeholder="Enter employee-id">
   </label>
   <div *ngIf=" new.empid.errors" class="alert alert-danger">
-      <p class="error" *ngIf="new.empid.errors.required"> required field</p>
-  
-    </div>
-  
+    <p class="error" *ngIf="new.empid.errors.required">/* required field */</p>
+  </div>
+
 
 
   <div formGroupName="address">
@@ -51,22 +49,32 @@
       Line 1:
       <input class="box" type="text" formControlName="Line1" placeholder="Enter Street no.">
     </label>
-    
-    
+    <div *ngIf=" new.address.controls.Line1.errors" class="alert alert-danger">
+      <p class="error" *ngIf="new.address.controls.Line1.errors.required">/* required field */</p>
+    </div>
+
+
 
     <label>
       Line 2:
       <input class="box" type="text" formControlName="Line2" placeholder="Enter colony">
     </label>
-    
-    
+    <div *ngIf=" new.address.controls.Line2.errors" class="alert alert-danger">
+      <p class="error" *ngIf="new.address.controls.Line2.errors.required">/* required field */</p>
+    </div>
+
+
+
 
     <label>
       District:
       <input class="box" type="text" formControlName="District" placeholder="Enter District">
     </label>
-    
-    
+    <div *ngIf=" new.address.controls.District.errors" class="alert alert-danger">
+      <p class="error" *ngIf="new.address.controls.District.errors.required">/* required field */</p>
+    </div>
+
+
 
     <label>
       State:
@@ -110,15 +118,19 @@
       </select>
     </label>
 
+
     <label>
       Pin Code: </label>
-    <input
-      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-      type="number" maxlength="6" class="box" formControlName="Pincode" placeholder="Enter pincode">
+    <input type="tel" class="box" formControlName="Pincode" placeholder="Enter pincode">
   </div>
-  
+  <div *ngIf=" new.address.controls.Pincode.errors" class="alert alert-danger">
+    <p class="error" *ngIf="new.address.controls.Pincode.errors.required">/* pin code is required */</p>
+    <p class="error" *ngIf="new.address.controls.Pincode.errors.maxlength">/* maxlength must be 6 */</p>
+    <p class="error" *ngIf="new.address.controls.Pincode.errors.minlength">/* minlength must be 6 */</p>
+    <p class="error" *ngIf="new.address.controls.Pincode.errors.pattern">/* input must be a number. */</p>
+  </div>
 
-
+  <br>
 
   <button type="submit" [disabled]="!profileForm.valid">Submit</button>
 </form>
